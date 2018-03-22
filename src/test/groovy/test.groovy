@@ -17,7 +17,7 @@ class test {
         }
 //        "#####-Ex-3-#####"
 
-        String buildinfo = new File('resources/buildinfo.json').text
+        String buildinfo = new File('src/test/resources/buildinfo.json').text
         def jsonSlurper = new JsonSlurper()
         def json = jsonSlurper.parseText(buildinfo)
 
@@ -36,13 +36,15 @@ class test {
         def uniqueDependencies = []
 
         dependencies.each {dependencie ->
-            //Some dependencies NOT contains sha1, sha2 and etc.
-            if (dependencie[0].size()==6)
-                uniqueDependencies.add(dependencie[0])
+            for (int i=0; i<dependencie.size(); i++){
+                //Some dependencies NOT contains sha1, sha2 and etc.
+                if (dependencie[i].size()==6)
+                    uniqueDependencies.add(dependencie[i])
+            }
         }
         uniqueDependencies = uniqueDependencies.unique()
 
-        def csvFile = new File("resources/dependencies.csv")
+        def csvFile = new File("src/test/resources/dependencies.csv")
         csvFile.createNewFile()
         csvFile << "type , sha1 , sha256 , md5 , id , scopes \n"
         uniqueDependencies.each {uniqueDependencie ->
