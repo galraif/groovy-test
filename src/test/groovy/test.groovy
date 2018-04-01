@@ -17,11 +17,11 @@ class test {
         }
 //        "#####-Ex-3-#####"
 
-        String buildinfo = new File('src/test/resources/buildinfo.json').text
+        String buildinfo = this.getClass().getResource("/buildinfo.json").text
         def jsonSlurper = new JsonSlurper()
         def json = jsonSlurper.parseText(buildinfo)
 
-        //###Print modules###/
+//        //###Print modules###/
         def modules = json.modules
         modules.each {module ->
             println "Module ID: ${module.id} contains ${module.artifacts.name.size()} Artifact(s) name:"
@@ -29,27 +29,27 @@ class test {
                 println "   * ${artifact.name}"
             }
             println ""
-       }
+        }
 
         //###Export dependencies to cvs file###//
         def dependencies = json.modules.dependencies
         def uniqueDependencies = []
 
-        dependencies.each {dependencie ->
-            for (int i=0; i<dependencie.size(); i++){
+        dependencies.each { dependencie ->
+            dependencie.size().times {
                 //Some dependencies NOT contains sha1, sha2 and etc.
-                if (dependencie[i].size()==6)
-                    uniqueDependencies.add(dependencie[i])
+                if (dependencie[it].size()==6)
+                    uniqueDependencies.add(dependencie[it])
             }
         }
-        uniqueDependencies = uniqueDependencies.unique()
+            uniqueDependencies = uniqueDependencies.unique()
 
-        def csvFile = new File("src/test/resources/dependencies.csv")
-        csvFile.createNewFile()
-        csvFile << "type , sha1 , sha256 , md5 , id , scopes \n"
-        uniqueDependencies.each {uniqueDependencie ->
-            csvFile << "${uniqueDependencie.type} , ${uniqueDependencie.sha1} , ${uniqueDependencie.sha256} , ${uniqueDependencie.md5} , ${uniqueDependencie.id} , ${uniqueDependencie.scopes[0]}\n"
+            def csvFile = new File("${this.getClass().getResource("/").path}dependencies.csv")
+            csvFile.createNewFile()
+            csvFile << "type , sha1 , sha256 , md5 , id , scopes \n"
+            uniqueDependencies.each { uniqueDependencie ->
+                csvFile << "${uniqueDependencie.type} , ${uniqueDependencie.sha1} , ${uniqueDependencie.sha256} , ${uniqueDependencie.md5} , ${uniqueDependencie.id} , ${uniqueDependencie.scopes[0]}\n"
+            }
+            println "Dependencies exported to ${this.getClass().getResource( "/").path}dependencies.csv"
         }
-        println "Dependencies exported to dependencies.csv"
     }
-}
