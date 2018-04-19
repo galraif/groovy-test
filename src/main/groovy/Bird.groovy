@@ -12,7 +12,7 @@ abstract class Bird extends Animal{
         return true
     }
 
-    def isMammel(){
+    def isMammal(){
         return false
     }
 

@@ -8,7 +8,7 @@ abstract class Mammal extends Animal{
         return false
     }
 
-    def isMammel(){
+    def isMammal(){
         return true
     }
 

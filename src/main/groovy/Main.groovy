@@ -17,15 +17,15 @@ class Main {
         animals.add(seagull)
         animals.add(sparrow)
 
-        animals.each {animel ->
-            println "The ${animel.class.name}:"
-            println "\t* Belongs to the ${animel.class.superclass.name.toLowerCase()}s family"
-            println "\t* Eating ${animel.eat()}"
-            println "\t* ${animel.sleep()}"
-            println "\t* ${animel.fly()}"
-            println "\t* It's ${animel.isMammel()} that the ${animel.class.name.toLowerCase()} is a mammal"
-            println "\t* It's ${animel.isBird()} that the ${animel.class.name.toLowerCase()} is a bird"
-            println "\t* Says: \"${animel.sayHello()}\""
+        animals.each {animal ->
+            println "The ${animal.class.name}:"
+            println "\t* Belongs to the ${animal.class.superclass.name.toLowerCase()}s family"
+            println "\t* Eating ${animal.eat()}"
+            println "\t* ${animal.sleep()}"
+            println "\t* ${animal.fly()}"
+            println "\t* It's ${animal.isMammal()} that the ${animal.class.name.toLowerCase()} is a mammal"
+            println "\t* It's ${animal.isBird()} that the ${animal.class.name.toLowerCase()} is a bird"
+            println "\t* Says: \"${animal.sayHello()}\""
         }
     }
 }
