@@ -1,4 +1,4 @@
-abstract class Bird extends Animal{
+abstract class Bird implements Animal{
 
     def sleep(){
         return "Sleeping on trees"

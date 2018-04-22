@@ -1,4 +1,4 @@
-abstract class Mammal extends Animal{
+abstract class Mammal implements Animal{
 
     def fly(){
         return "can't fly"

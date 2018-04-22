@@ -1,8 +1,8 @@
-abstract class Animal {
-    abstract def sleep()
-    abstract def eat()
-    abstract def fly()
-    abstract def isBird()
-    abstract def isMammal()
-    abstract def sayHello()
+interface Animal {
+    def sleep()
+    def eat()
+    def fly()
+    def isBird()
+    def isMammal()
+    def sayHello()
 }
